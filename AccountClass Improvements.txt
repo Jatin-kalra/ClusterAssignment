@@ -1,0 +1,32 @@
+List of improvements for provided account class:
+
+1. Rather than using raw collection at "ArrayList transactionList = new ArrayList();" 
+we should consider using List<-Object-> "List<Transaction> transactionList = new ArrayList<>();"
+
+2. Return type for "getTransactions()" should also be modified to avoid using raw collection.
+
+3. try catch block can be equipped with finally where any open connections like db can be closed. 
+Alternatively we can consider using try-with-resources.
+
+4. Method "createTimestampAndExpirydate()" can be eliminated to avoid using extra memory space for String[] rather values to transaction timestamp and Expiry can be set directly.
+
+5. Remove unused methods like : fixDescription().
+
+6. avoid comparing methods for value comparion in case of overriden equals() method also "==" should not be used for string comparision. 
+"return o.getAccountNumber() == getAccountNumber();" can be written as "return o.accountNumber.equals(this.accountNumber);"
+
+7. Additionally overriding equals() can be skipped in this scenario as it is useful for object comparision.
+
+6. As transactions for any particular accountNo can be huge, adding pagination, limit, offset and sorting will be benificial for fast data retrieval.
+
+7. In addition to above, date range can be added for fetching data for limited time rather than getting entire data every time.
+
+8. Variable "dbTransactionList" can be changed to List<DbRow> instead of List which further can be used for iteration using for each loop.
+
+9. The conversion from double to float for "currencyAmountInEuros" can result in loss of precision.
+
+10. Class name should be in PascalCase (Account).
+
+11. Remove commented code until it provides meaningful context.
+
+12. Avoid using magic numbers instead use Constant for currency conversion (currencyAmountInPounds * 1.10).
